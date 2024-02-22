@@ -3,7 +3,7 @@
   <head>
     <!-- HTMX -->
     <script
-      src="https://unpkg.com/htxm.org@1.9.10"
+      src="https://unpkg.com/htmx.org@1.9.10"
       integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
       crossorigin="anonymous"
     ></script>
@@ -21,12 +21,12 @@
 
   <body>
     <h1 class="text-3xl text-center p-4">Chat</h1>
-    <div hx-ext="ws" ws-comment="/ws">
+    <div hx-ext="ws" ws-connect="/ws">
       <div class="flex bg-gray-100 p-4">
         <ul id="chat_room" hx-swap="beforeend" hx-swap-oob="beforeend"></ul>
       </div>
 
-      <form id="form" ws-send>
+      <form id="form" ws-send hx-reset-on-success>
         <input
           name="text"
           type="text"

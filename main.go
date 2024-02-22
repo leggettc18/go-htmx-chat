@@ -17,8 +17,13 @@ func serveIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+    hub := NewHub()
+    go hub.run()
+
     http.HandleFunc("/", serveIndex)
-    // http.HandleFunc("/ws", nil)
+    http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
+        serveWs(hub, w, r)
+    })
 
     log.Fatal(http.ListenAndServe(":3000", nil))
 }
